@@ -1,7 +1,9 @@
 <script setup>
-const data = await useFetch('/api/categories')
+const data = await useFetch('/api/playlist')
+
+const items = computed(() => data.data.value?.data ?? [])
 </script>
 
 <template>
-    <CategoryList :categories="data.data.value.data " />
+    <PlaylistList v-for="{ name, playlist } in items" :name="name" :playlists="playlist" />
 </template>
