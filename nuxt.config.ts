@@ -3,5 +3,12 @@ export default defineNuxtConfig({
     runtimeConfig: {
         clientId: '',
         clientSecret: '',
+    },
+    css: [
+        '~/assets/css/variables.css',
+        '~/assets/css/main.css',
+    ],
+    app: {
+        rootId: 'spotify',
     }
 })

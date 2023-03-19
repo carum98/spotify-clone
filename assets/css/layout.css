@@ -1,0 +1,32 @@
+@import './components/sidebar.css';
+@import './components/header.css';
+@import './components/content.css';
+
+#spotify {
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar content"
+        "sidebar footer";
+
+    grid-template-columns: var(--width-sidebar) auto;
+
+    .sidebar {
+        grid-area: sidebar;
+    }
+
+    .header {
+        grid-area: header;
+    }
+
+    .content {
+        grid-area: content;
+    }
+
+    .footer {
+        grid-area: footer;
+        background-color: #191414;
+        height: 100px;
+    }
+}

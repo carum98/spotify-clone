@@ -1,0 +1,11 @@
+.sidebar {
+    background-color: #000000;
+    position: fixed;
+    height: 100%;
+    width: var(--width-sidebar);
+
+    & a {
+        text-decoration: none;
+        color: #b3b3b3;
+    }
+}
