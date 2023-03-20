@@ -71,3 +71,16 @@
         color: var(--text-subdued);
     }
 }
+
+.sidebar-resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize;
+
+    &:hover {
+        border-right: 1px solid var(--text-subdued);
+    }
+}
