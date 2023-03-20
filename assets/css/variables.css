@@ -4,4 +4,8 @@
     --color-tertiary: #0000ff;
 
     --width-sidebar: 200px;
+    --horizontal-padding: 20px;
+
+    --text-base: #fff;
+    --text-subdued: #a7a7a7;
 }

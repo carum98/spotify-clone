@@ -5,3 +5,9 @@
     overscroll-behavior: none;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}

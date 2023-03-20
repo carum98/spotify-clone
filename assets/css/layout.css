@@ -1,6 +1,7 @@
 @import './components/sidebar.css';
 @import './components/header.css';
 @import './components/content.css';
+@import './components/footer.css';
 
 #spotify {
     height: 100vh;
@@ -26,7 +27,6 @@
 
     .footer {
         grid-area: footer;
-        background-color: #191414;
-        height: 100px;
+
     }
 }

@@ -1,8 +1,40 @@
 .header {
-    background-color: #191414;
-    height: 50px;
-    opacity: 0.8;
+    background-color: #101010;
+    height: 64px;
     position: fixed;
     right: 0;
     left: var(--width-sidebar);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 var(--horizontal-padding);
+
+    .header-arrows {
+        display: flex;
+        gap: 10px;
+
+        & button {
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            color: #fff;
+            background-color: #000;
+        }
+    }
+
+    .header-access button {
+        font-size: 15px;
+        padding: 10px 25px;
+        border-radius: 30px;
+    }
+
+    .button-sign-up {
+        color: var(--text-subdued);
+    }
+
+    .button-login-in {
+        background-color: #fff;
+    }
 }
