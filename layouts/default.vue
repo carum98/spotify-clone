@@ -4,7 +4,7 @@
     <LayoutHeader />
 
     <main class="content">
-        <!-- <slot /> -->
+        <slot />
     </main>
 
     <LayoutFooter />

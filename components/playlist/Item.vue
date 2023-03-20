@@ -7,10 +7,16 @@ defineProps<{
 </script>
 
 <template>
-    <NuxtLink :to="`/playlist/${playlist.id}`">
-        <article>
-            <h1>{{ playlist.name }}</h1>
-            <img :src="playlist.image" :alt="playlist.name" loading="lazy" />
-        </article>
-   </NuxtLink>
+    <article class="playlist-item">
+        <NuxtLink :to="`/playlist/${playlist.id}`">
+            <div class="playlist-item-content">
+                <img :src="playlist.image" :alt="playlist.name" loading="lazy" height="170"  />
+                <button>
+                    <IconPlay />
+                </button>
+            </div>
+            <p class="playlist-item-name">{{ playlist.name }}</p>
+            <p class="playlist-item-description">{{ playlist.description }}</p>
+        </NuxtLink>
+    </article>
 </template>

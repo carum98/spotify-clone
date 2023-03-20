@@ -1,4 +1,4 @@
 .content {
     background-color: #121212;
-    height: 100vh;
+    padding: 80px var(--horizontal-padding);
 }
