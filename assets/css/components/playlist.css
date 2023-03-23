@@ -119,3 +119,28 @@
     min-width: var(--width-colum);
     max-width: var(--width-colum);
 }
+
+/* Playlist Page */
+
+.playlist-page-header {
+    display: flex;
+    color: var(--text-base);
+    gap: 30px;
+
+    .image {
+        box-shadow: 0 4px 60px rgba(0,0,0,.5);
+    }
+
+    .name {
+        font-size: 6rem;
+    }
+
+    .type {
+        font-size: 0.8125rem;
+    }
+
+    .description {
+        ont-size: 0.8125rem;
+        color: var(--text-subdued);
+    }
+}

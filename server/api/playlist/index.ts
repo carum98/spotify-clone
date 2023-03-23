@@ -30,6 +30,6 @@ async function fetchPlaylistCategory(category: Category) {
 function parserPlaylist(message: string, playlist: { items: any[]; }) {
     return {
         name: message,
-        playlist: playlist.items.map((item: any) => new Playlist(item)) as Playlist[],
+        playlist: playlist?.items.map((item: any) => new Playlist(item)) as Playlist[] || [],
     }
 }

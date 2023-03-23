@@ -12,6 +12,7 @@
         "sidebar footer";
 
     grid-template-columns: var(--width-sidebar) auto;
+    background-color: #121212;
 
     .sidebar {
         grid-area: sidebar;
