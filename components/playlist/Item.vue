@@ -11,7 +11,7 @@ defineProps<{
         <NuxtLink :to="`/playlist/${playlist.id}`">
             <div class="playlist-item-content">
                 <img :src="playlist.image" :alt="playlist.name" loading="lazy" height="170"  />
-                <button>
+                <button class="play-button">
                     <IconPlay />
                 </button>
             </div>

@@ -1,7 +1,7 @@
 .content {
     --height: 350px;
-    --color-hexa: #75859a;
-    --color-rgb: 117, 133, 154;
+    --color-hexa: #1f1f1f;
+    --color-rgb: 31, 31, 31;
     
 
     background: linear-gradient(180deg, var(--color-hexa) var(--height), rgba(var(--color-rgb), 65%) var(--height), transparent 550px);
