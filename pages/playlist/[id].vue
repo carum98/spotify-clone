@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { createVNode, render } from 'vue';
+import { Track } from '~~/models/track';
+
 const route = useRoute()
 
 const { data: { value } } = await useFetch(`/api/playlist/${route.params.id}`)
@@ -14,6 +17,29 @@ function imageOnLoad(element: Event) {
     const colorHexa = rgbToHex(mostUsedColor!.r, mostUsedColor!.g, mostUsedColor!.b)
 
     setHeaderColor(colorHexa)
+}
+
+function usePlayer(track: Track) {
+    const app = document.querySelector('#spotify') as HTMLElement
+    let player = document.querySelector('#player') as HTMLElement | null
+
+    if (!player) {
+        player = document.createElement('div')
+        player.id = 'player'
+    }
+
+    // Clear the player
+    player.innerHTML = ''
+
+    const component = defineAsyncComponent(() => import('~~/components/player/Container.vue'))
+
+    const instance = createVNode(component, {
+        track,
+    })
+
+    render(instance, player)
+
+    app.appendChild(player)
 }
 </script>
 
@@ -67,7 +93,7 @@ function imageOnLoad(element: Event) {
 
         <tbody>
             <tr></tr>
-            <tr v-for="(item, index) in items" :key="item.id">
+            <tr v-for="(item, index) in items" :key="item.id" @click="usePlayer(item)">
                 <td class="play">
                     <span>{{ index + 1 }}</span>
                     <IconPlay  />

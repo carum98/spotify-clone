@@ -1,0 +1,125 @@
+.player-container {
+    background-color: #181818;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    & svg {
+        color: var(--text-subdued);
+    }
+}
+
+.player-track-information {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-align: left;
+    padding: 10px 0;
+    color: var(--text-subdued);
+
+    & a {
+        color: var(--text-base);
+        font-size: 1rem;
+    }
+}
+
+.player-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    max-width: 722px;
+    width: 40%;
+}
+
+.player-track-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .play {
+        background-color: var(--text-base);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+
+        & svg {
+            color: #000;
+        }
+    }
+}
+
+.player-audio {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-base);
+    width: 100%;
+
+    & span {
+        color: var(--text-subdued);
+        font-size: 13px;
+    }
+}
+
+.player-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.range-slider {
+    --slider-position: 10px;
+
+    width: 100%;
+    height: 4px;
+    background-color: #5e5d5d;
+    border-radius: 2px;
+    position: relative;
+
+    &:hover::before {
+        background-color: var(--color-primary);
+    }
+
+    &:hover::after {
+        display: block;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: var(--slider-position);
+        height: 4px;
+        background-color: #fff;
+        border-radius: 2px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        top: -3px;
+        left: var(--slider-position);
+        background-color: #fff;
+        display: none;
+    }
+}

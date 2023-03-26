@@ -2,6 +2,7 @@
 @import 'layout.css';
 
 @import './components/playlist.css';
+@import './components/player.css';
 
 .play-button {
     width: 48px;
