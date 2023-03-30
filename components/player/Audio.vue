@@ -1,19 +1,18 @@
 <script setup lang="ts">
-defineProps<{
-    src: string 
-}>()
+const { currentTime, duration, percent } = useAudio()
 
-const value = ref(0)
+function formatTime(time: number) {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+}
 
-watch(value, (value) => {
-    console.log(value)
-})
 </script>
 
 <template>
     <div class="player-audio">
-        <span id="current-time" class="time">0:00</span>
-        <Range v-model="value"/>
-        <span id="duration" class="time">0:00</span>
+        <span id="current-time" class="time">{{ formatTime(currentTime) }}</span>
+        <Range v-model="percent"/>
+        <span id="duration" class="time">{{ formatTime(duration) }}</span>
     </div>
 </template>

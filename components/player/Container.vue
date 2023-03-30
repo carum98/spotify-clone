@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { Track } from '~~/models/track';
 
-defineProps<{
+const props = defineProps<{
     track: Track
 }>()
 
+const { toggle, setAudio, playing } = useAudio()
+
 const volume = ref(0)
+
+onMounted(() => {
+    setAudio(props.track.preview)
+})
 </script>
 
 <template>
@@ -28,8 +34,9 @@ const volume = ref(0)
                     <IconNext direction="right" />
                 </button>
 
-                <button class="play">
-                    <IconPlay />
+                <button class="play" @click="toggle">
+                    <IconPause v-if="playing" />
+                    <IconPlay v-else />
                 </button>
 
                 <button>
@@ -41,7 +48,7 @@ const volume = ref(0)
                 </button>
             </div>
 
-            <PlayerAudio :src="track.preview" />
+            <PlayerAudio />
         </div>
 
         <div class="player-actions">

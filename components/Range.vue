@@ -9,14 +9,25 @@ const emits = defineEmits<{
 
 const range = ref<HTMLElement | null>(null)
 
+function setPosition(value: number) {
+    range.value!.style.setProperty('--slider-position', value + 'px')
+}
+
 function onHandler(e: MouseEvent) {
     const sliderWidth = window.getComputedStyle(range.value!).width
     const value = e.offsetX / parseInt(sliderWidth)
 
     emits('update:modelValue', value)
 
-    range.value!.style.setProperty('--slider-position', e.offsetX + 'px')
+    setPosition(e.offsetX)
 }
+
+watch(() => props.modelValue, (value) => {
+    const sliderWidth = window.getComputedStyle(range.value!).width
+    const position = (parseInt(sliderWidth) / 100) * value
+
+    setPosition(position)
+})
 </script>
 
 <template>
