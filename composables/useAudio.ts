@@ -28,6 +28,10 @@ export function useAudio() {
 
         state.value.currentTime = state.value.audio.currentTime
         state.value.percent = state.value.audio.currentTime / state.value.duration * 100
+
+        if (state.value.currentTime === state.value.duration) {
+            pause()
+        }
     }
 
     function play() {
@@ -59,7 +63,7 @@ export function useAudio() {
         }
     }
 
-    function seek(e: MouseEvent) {
+    function seek(e: MouseEvent, type: 'time' | 'volume') {
         if (state.value.audio === null) return
 
         const target = e.target as HTMLElement
@@ -67,7 +71,16 @@ export function useAudio() {
         const x = e.clientX - rect.left
         const percent = x / target.clientWidth
 
-        state.value.audio.currentTime = percent * state.value.duration
+        if (type === 'time') {
+            state.value.audio.currentTime = percent * state.value.duration
+        } else if (type === 'volume') {
+            state.value.volume = percent
+            state.value.audio.volume = percent
+        }
+
+        if (!state.value.playing) {
+            play()
+        }
     }
 
     return {
@@ -77,12 +90,14 @@ export function useAudio() {
         duration: computed(() => state.value.duration),
         percent: computed(() => state.value.percent),
         playing: computed(() => state.value.playing),
+        volume: computed(() => state.value.volume * 100),
 
         // methods
         setAudio: state.value.setAudio.bind(state.value),
         play,
         pause,
         toggle,
-        seek,
+        seek: (e: MouseEvent) => seek(e, 'time'),
+        seekVolume: (e: MouseEvent) => seek(e, 'volume')
     }
 }

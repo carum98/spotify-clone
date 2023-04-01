@@ -109,6 +109,8 @@
         height: 4px;
         background-color: #fff;
         border-radius: 2px;
+
+        transition: width 0.2s ease-in-out;
     }
 
     &::after {
@@ -121,5 +123,7 @@
         left: var(--slider-position);
         background-color: #fff;
         display: none;
+
+        transition: left 0.2s ease-in-out;
     }
 }

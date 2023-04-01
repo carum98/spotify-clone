@@ -5,9 +5,7 @@ const props = defineProps<{
     track: Track
 }>()
 
-const { toggle, setAudio, playing } = useAudio()
-
-const volume = ref(0)
+const { toggle, setAudio, playing, seekVolume, volume } = useAudio()
 
 onMounted(() => {
     setAudio(props.track.preview)
@@ -55,7 +53,7 @@ onMounted(() => {
             <IconVolume />
 
             <div style="width: 70px;">
-                <Range v-model="volume" />
+                <Range v-model="volume" @seek="seekVolume" />
             </div>
         </div>
     </section>

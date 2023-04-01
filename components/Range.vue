@@ -5,6 +5,7 @@ const props = defineProps<{
 
 const emits = defineEmits<{
     (e: 'update:modelValue', value: number): void
+    (e: 'seek', value: MouseEvent): void
 }>()
 
 const range = ref<HTMLElement | null>(null)
@@ -13,13 +14,32 @@ function setPosition(value: number) {
     range.value!.style.setProperty('--slider-position', value + 'px')
 }
 
-function onHandler(e: MouseEvent) {
+function onHandler({ event, trigger }: { event: MouseEvent; trigger: boolean }) {
     const sliderWidth = window.getComputedStyle(range.value!).width
-    const value = e.offsetX / parseInt(sliderWidth)
+    const value = event.offsetX / parseInt(sliderWidth)
 
-    emits('update:modelValue', value)
+    if (trigger) {
+        emits('update:modelValue', value)
+        emits('seek', event)
+    }
 
-    setPosition(e.offsetX)
+    setPosition(event.offsetX)
+}
+
+function move(event: MouseEvent) {
+    onHandler({ event, trigger: false })
+}
+
+function up(event: MouseEvent) {
+    onHandler({ event, trigger: true})
+
+    window.removeEventListener('mousemove', move)
+    window.removeEventListener('mouseup', up)
+}
+
+function down(e: MouseEvent) {
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseup', up)
 }
 
 watch(() => props.modelValue, (value) => {
@@ -31,5 +51,5 @@ watch(() => props.modelValue, (value) => {
 </script>
 
 <template>
-    <div ref="range" class="range-slider" @click="onHandler"></div>
+    <div ref="range" class="range-slider" @mousedown="down"></div>
 </template>

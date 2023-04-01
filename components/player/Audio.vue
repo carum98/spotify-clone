@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentTime, duration, percent } = useAudio()
+const { currentTime, duration, percent, seek } = useAudio()
 
 function formatTime(time: number) {
     const minutes = Math.floor(time / 60)
@@ -12,7 +12,7 @@ function formatTime(time: number) {
 <template>
     <div class="player-audio">
         <span id="current-time" class="time">{{ formatTime(currentTime) }}</span>
-        <Range v-model="percent"/>
+        <Range v-model="percent" @seek="seek" />
         <span id="duration" class="time">{{ formatTime(duration) }}</span>
     </div>
 </template>
