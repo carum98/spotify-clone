@@ -8,7 +8,7 @@ const props = defineProps<{
 const { toggle, setAudio, playing, seekVolume, volume } = useAudio()
 
 onMounted(() => {
-    setAudio(props.track.preview)
+    setAudio(props.track.preview, props.track.id)
 })
 </script>
 
