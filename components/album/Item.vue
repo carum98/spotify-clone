@@ -7,10 +7,10 @@ defineProps<{
 </script>
 
 <template>
-    <NuxtLink :to="`/album/${album.id}`">
-        <article>
-            <h1>{{ album.name }}</h1>
-            <img :src="album.image" :alt="album.name" />
-        </article>
-    </NuxtLink>
+    <CardItem
+        :to="`/album/${album.id}`"
+        :image="album.image"
+        :name="album.name"
+        description="Album"
+    ></CardItem>
 </template>

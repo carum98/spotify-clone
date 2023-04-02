@@ -5,19 +5,22 @@ const value = await $fetch(`/api/artist/${route.params.id}`)
 </script>
 
 <template>
-    <h1>{{ value.data.name }}</h1>
+    <section class="playlist-page-header">
+        <img v-if="value.data.image" class="image" :src="value.data.image" :alt="value?.data.name" width="232" height="232" />
 
-    <h2>Albums</h2>
-    <ul>
-        <li v-for="item in value.albums" :key="item.id">
-            <AlbumItem :album="item" />
-        </li>
-    </ul>
+        <div>
+            <p class="type">Artist</p>
+            <h1 class="name">{{ value?.data.name }}</h1>
+        </div>
+    </section>
+    <CardList name="Popular" style="width: 70%;">
+        <table class="playlist-page-table">
+            <tbody>
+                <tr></tr>
+                <TrackRow v-for="(item, index) in  value.topTracks" :key="item.id" :item="item" :index="index + 1" hide-artist />
+            </tbody>
+        </table>
+    </CardList>
 
-    <h2>Tracks</h2>
-    <ul>
-        <li v-for="item in value.topTracks" :key="item.id">
-            <TrackItem :track="item" />
-        </li>
-    </ul>
+    <AlbumList name="Albums" :albums="value.albums" />
 </template>

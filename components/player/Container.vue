@@ -17,7 +17,7 @@ onMounted(() => {
         <div class="player-track-information">
             <img :src="track.album?.image" :alt="track.name" width="56" height="56" loading="lazy" />
             <div>
-                <a>{{ track.name }}</a>
+                <h2>{{ track.name }}</h2>
                 <p>{{ track.artist.name }}</p>
             </div>
         </div>

@@ -3,6 +3,7 @@
 
 @import './components/playlist.css';
 @import './components/player.css';
+@import './components/card.css';
 
 .play-button {
     width: 48px;

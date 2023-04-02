@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 
     const [data, albums, topTracks] = await Promise.all([
         httpClient.get(`/artists/${id}`),
-        httpClient.get(`/artists/${id}/albums`),
+        httpClient.get(`/artists/${id}/albums?limit=7&country=US`),
         httpClient.get(`/artists/${id}/top-tracks?country=US`),
     ])
 

@@ -2,10 +2,15 @@
 import { createVNode, render } from 'vue'
 import { Track } from '~~/models/track'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     item: Track
     index: number
-}>()
+    hideAlbum?: boolean
+    hideArtist?: boolean
+}>(), {
+    hideAlbum: false,
+    hideArtist: false,
+})
 
 const active = ref(false)
 
@@ -50,11 +55,19 @@ onMounted(() => {
         <td>
             <img :src="item.album?.image" :alt="item.name" width="40" height="40" loading="lazy" />
             <div>
-                <a>{{ item.name }}</a>
-                <p>{{ item.artist.name }}</p>
+                <NuxtLink class="track-name" :to="`/track/${item.id}`">
+                    {{ item.name }}
+                </NuxtLink>
+                <NuxtLink v-if="!hideArtist" class="artist-name" :to="`/artist/${item.artist.id}`">
+                    {{ item.artist.name }}
+                </NuxtLink>
             </div>
         </td>
-        <td>{{ item.album?.name }}</td>
+        <td>
+            <NuxtLink v-if="!hideAlbum" class="album-name" :to="`/album/${item.album?.id}`">
+                {{ item.album?.name }}
+            </NuxtLink>
+        </td>
         <td>
             <button class="like">
                 <IconHeartOutline />
