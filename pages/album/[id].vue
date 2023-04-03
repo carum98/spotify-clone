@@ -2,10 +2,6 @@
 const route = useRoute()
 
 const { data: { value } } = await useFetch(`/api/album/${route.params.id}`)
-
-function releaseYear(date: string) {
-    return date.split('-').at(0) ?? ''
-}
 </script>
 
 <template>

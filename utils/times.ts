@@ -24,3 +24,7 @@ export function sumDurations(durations: number[]) {
 
     return totalDuration;
 }
+
+export function releaseYear(date: string) {
+    return date.split('-').at(0) ?? ''
+}

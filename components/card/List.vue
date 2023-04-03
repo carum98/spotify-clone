@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
     name: string
+    hideButton?: boolean
 }>()
 </script>
 
@@ -9,7 +10,7 @@ defineProps<{
         <header class="card-list-header">
             <h2>{{ name }}</h2>
 
-            <button>
+            <button v-if="!hideButton">
                 Show all
             </button>
         </header>
