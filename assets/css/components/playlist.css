@@ -58,7 +58,7 @@
     & tbody tr:first-child {
         display: block;
         height: 20px;
-        width: 30px;
+        /* width: 30px; */
     }
 
     & th {
@@ -75,6 +75,7 @@
         font-size: 1rem;
 
         position: relative;
+        width: 70px;
     }
 
     & td {

@@ -7,9 +7,11 @@ const props = withDefaults(defineProps<{
     index: number
     hideAlbum?: boolean
     hideArtist?: boolean
+    hideImage?: boolean
 }>(), {
     hideAlbum: false,
     hideArtist: false,
+    hideImage: false,
 })
 
 const active = ref(false)
@@ -53,7 +55,7 @@ onMounted(() => {
             <IconPlay  />
         </td>
         <td>
-            <img :src="item.album?.image" :alt="item.name" width="40" height="40" loading="lazy" />
+            <img v-if="!hideImage" :src="item.album?.image" :alt="item.name" width="40" height="40" loading="lazy" />
             <div>
                 <NuxtLink class="track-name" :to="`/track/${item.id}`">
                     {{ item.name }}
