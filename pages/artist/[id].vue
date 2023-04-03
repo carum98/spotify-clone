@@ -5,14 +5,14 @@ const value = await $fetch(`/api/artist/${route.params.id}`)
 </script>
 
 <template>
-    <section class="playlist-page-header">
-        <img v-if="value.data.image" class="image" :src="value.data.image" :alt="value?.data.name" width="232" height="232" />
+    <ProfileHeader
+        title="Artist"
+        :name="value.data.name"
+        description=""
+        :image="value.data.image || '/logo-small.svg'"
+    >
+    </ProfileHeader>
 
-        <div>
-            <p class="type">Artist</p>
-            <h1 class="name">{{ value?.data.name }}</h1>
-        </div>
-    </section>
     <CardList name="Popular" style="width: 70%;">
         <table class="playlist-page-table">
             <tbody>

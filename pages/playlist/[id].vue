@@ -4,52 +4,27 @@ const route = useRoute()
 const { data: { value } } = await useFetch(`/api/playlist/${route.params.id}`)
 
 const items = computed(() => value?.data.tracks ?? [])
-const totalDuration = computed(() => items.value.reduce((acc, item) => acc + item.duration, 0))
-
-function imageOnLoad(element: Event) {
-    const img = element.target as HTMLImageElement
-
-    const palette = colorPalette(img)
-    const mostUsedColor = palette.at(-1)
-    const colorHexa = rgbToHex(mostUsedColor!.r, mostUsedColor!.g, mostUsedColor!.b)
-
-    setHeaderColor(colorHexa)
-}
 </script>
 
 <template>
-    <section class="playlist-page-header">
-        <img class="image" :src="value?.data.image" :alt="value?.data.name" width="232" height="232" @load="imageOnLoad" />
+    <ProfileHeader
+        v-if="value"
+        title="Playlist"
+        :name="value.data.name"
+        :description="value.data.description"
+        :image="value.data.image"
+    >
+        <p>
+            <img src="/logo-small.svg" alt="Spotify" width="20" height="20" />
+            Spotify
+            •
+            <span>{{ value?.data.tracks.length }} songs</span>
+            •
+            <span>{{ formatTimeLong(sumDurations(items.map(e => e.duration))) }}</span>
+        </p>
+    </ProfileHeader>
 
-        <div>
-            <p class="type">Playlist</p>
-            <h1 class="name">{{ value?.data.name }}</h1>
-            <p class="description">{{ value?.data.description }}</p>
-
-            <p>
-                <img src="/logo-small.svg" alt="Spotify" width="20" height="20" />
-                Spotify
-                •
-                <span>{{ value?.data.tracks.length }} songs</span>
-                •
-                <span>{{ formatTimeLong(totalDuration) }}</span>
-            </p>
-        </div>
-    </section>
-
-    <section class="playlist-page-actions">
-        <button class="play-button" >
-            <IconPlay />
-        </button>
-
-        <button class="follow-button">
-            <IconHeartOutline />
-        </button>
-
-        <button class="more-button">
-            <IconDotsHorizontal />
-        </button>
-    </section>
+    <ProfileActions />
 
     <table class="playlist-page-table">
         <thead>

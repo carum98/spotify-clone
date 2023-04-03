@@ -18,3 +18,9 @@ export function formatTimeLong(milliseconds: number) {
 
     return formattedTime;
 }
+
+export function sumDurations(durations: number[]) {
+    const totalDuration = durations.reduce((acc, curr) => acc + curr, 0);
+
+    return totalDuration;
+}

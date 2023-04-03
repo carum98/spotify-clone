@@ -2,31 +2,32 @@
 const route = useRoute()
 
 const { data: { value } } = await useFetch(`/api/album/${route.params.id}`)
+
+function releaseYear(date: string) {
+    return date.split('-').at(0) ?? ''
+}
 </script>
 
 <template>
-    <section class="playlist-page-header">
-        <img v-if="value?.data.image" class="image" :src="value.data.image" :alt="value?.data.name" width="232" height="232" />
+    <ProfileHeader
+        v-if="value"
+        title="Album"
+        :name="value.data.name"
+        description=""
+        :image="value.data.image"
+    >
+        <p>
+            {{ value.data.artists_name }}
+            •
+            <span>{{ releaseYear(value.data.release_date) }}</span>
+            •
+            <span>{{ value?.data.tracks.length }} songs</span>
+            ,
+            <span>{{ formatTimeLong(sumDurations(value?.data.tracks.map(e => e.duration))) }}</span>
+        </p>
+    </ProfileHeader>
 
-        <div>
-            <p class="type">Album</p>
-            <h1 class="name">{{ value?.data.name }}</h1>
-        </div>
-    </section>
-
-    <section class="playlist-page-actions">
-        <button class="play-button" >
-            <IconPlay />
-        </button>
-
-        <button class="follow-button">
-            <IconHeartOutline />
-        </button>
-
-        <button class="more-button">
-            <IconDotsHorizontal />
-        </button>
-    </section>
+    <ProfileActions />
 
     <table class="playlist-page-table">
         <thead>
