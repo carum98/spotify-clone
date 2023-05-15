@@ -4,7 +4,7 @@ import { Track } from '~~/models/track'
 
 const props = withDefaults(defineProps<{
     item: Track
-    index: number
+    index?: number
     hideAlbum?: boolean
     hideArtist?: boolean
     hideImage?: boolean
@@ -50,10 +50,11 @@ onMounted(() => {
 
 <template>
     <tr :class="{ active }" @click="usePlayer(item)">
-        <td class="play">
+        <td v-if="index" class="play">
             <span>{{ index }}</span>
             <IconPlay  />
         </td>
+        <td v-else></td>
         <td>
             <img v-if="!hideImage" :src="item.album?.image" :alt="item.name" width="40" height="40" loading="lazy" />
             <div>

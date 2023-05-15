@@ -4,6 +4,7 @@ defineProps<{
     image: string
     name: string
     description: string
+    circle?: boolean
 }>()
 </script>
 
@@ -11,7 +12,7 @@ defineProps<{
     <article class="card">
         <NuxtLink :to="to">
             <div class="card-content">
-                <img :src="image" :alt="name" loading="lazy" height="170"  />
+                <img :src="image" :alt="name" loading="lazy" height="170" :class="{ circle }"  />
                 <button class="play-button">
                     <IconPlay />
                 </button>
