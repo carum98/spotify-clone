@@ -8,7 +8,11 @@
             <button>
                 <IconArrow direction="right" />
             </button>
+
+            <div id="header-slot"></div>
         </div>
+
+        
 
         <div class="header-access">
             <button class="button-sign-up">

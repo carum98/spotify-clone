@@ -4,6 +4,7 @@
 @import './components/playlist.css';
 @import './components/player.css';
 @import './components/card.css';
+@import './components/categories.css';
 
 .play-button {
     width: 48px;
